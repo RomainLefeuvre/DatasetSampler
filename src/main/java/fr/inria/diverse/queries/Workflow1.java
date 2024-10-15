@@ -1,20 +1,14 @@
-package fr.inria.diverse.queries;
-
 import java.sql.Date;
-
 import fr.inria.diverse.model.Element;
 import fr.inria.diverse.model.metadata.IMetadataLoader;
 import fr.inria.diverse.model.operator.Operator;
 import fr.inria.diverse.model.operator.OperatorFactory;
-
 //Static import for operator factory
 import static fr.inria.diverse.model.operator.OperatorFactory.*;
 import static fr.inria.diverse.swh.Metadata.ExternalMetadata.*;
 
 import static fr.inria.diverse.swh.SWHRepository.*;
-public class Workflow1 {
-   
-    public static void main(String[] args) {
+void main() {
         Operator workflow =  
         OperatorFactory.filterOperator(
             languages.constraint(lang -> lang=="Java")
@@ -33,7 +27,7 @@ public class Workflow1 {
         ;
     } 
     
-}
+
 
 
 
