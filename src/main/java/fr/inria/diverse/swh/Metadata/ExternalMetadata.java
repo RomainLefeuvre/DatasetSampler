@@ -1,4 +1,4 @@
-package fr.inria.diverse.swhMetadata.Metadata;
+package fr.inria.diverse.swh.Metadata;
 
 import fr.inria.diverse.model.metadata.Metadata;
 

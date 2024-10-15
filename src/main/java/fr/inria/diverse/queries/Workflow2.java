@@ -3,9 +3,9 @@ package fr.inria.diverse.queries;
 import fr.inria.diverse.model.Set;
 import fr.inria.diverse.model.operator.Operator;
 import fr.inria.diverse.model.operator.OperatorFactory;
-import fr.inria.diverse.model.operator.selection.filter.FilterOperator;
-import static fr.inria.diverse.swhMetadata.Metadata.SWHRepoMeta.*;
+
 import static fr.inria.diverse.model.operator.OperatorFactory.*;
+import static fr.inria.diverse.swh.SWHRepository.*;
 
 public class Workflow2 {
    
