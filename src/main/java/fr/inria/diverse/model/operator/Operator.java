@@ -29,11 +29,18 @@ public abstract class Operator {
         return this;
     }
 
-    public Operator executeWorkflow(Set input){
-     
+    public Operator getWorkflowRootOperator(){
+        if(this.previousOperator==null){
+            return this;
+        }else{
+            return this.previousOperator.getWorkflowRootOperator();
+        }
     }
 
-    public getRootOperator()
+    public Operator executeWorkflow(Set input){
+        this.getWorkflowRootOperator().applyStep();
+        return this;
+    }
 
    // public evaluate()
 
@@ -46,38 +53,14 @@ public abstract class Operator {
         return this;
     }
 
-
-    //List all possible concrete operator that could be chained
-
-    public Operator chainFilterOperator(Constraint... constraints){
-        this.nextOperator = new FilterOperator(constraints);
-        return nextOperator;
+    public Operator chain(Operator operator){
+        this.nextOperator=operator;
+        this.previousOperator = operator;
+        return operator;
     }
 
-    public Operator chainClusteringOperator(SelectionOperator... selectionOperators){
-        this.nextOperator = new ClusteringOperator(selectionOperators);
-        return nextOperator;
-    }
 
-    public Operator chainRandomSelectionOperator(int seed, int cardinality){
-        this.nextOperator = new RandomSelectionOperator(seed, cardinality);
-        return nextOperator;
-    }
-
-    public Operator chainRandomSelectionOperator( int cardinality){
-        this.nextOperator = new RandomSelectionOperator(cardinality);
-        return nextOperator;
-    }
-
-    public Operator chainSystematicRandomSelectionOperator(int cardinality, int pas){
-        this.nextOperator = new SystematicRandomSelectionOperator(cardinality,pas);
-        return nextOperator;
-    }
-
-    public Operator chainManualSamplingOperator(int cardinality){
-        this.nextOperator = new ManualSamplingOperator(cardinality);
-        return nextOperator;
-    }
+   
 
 
 
