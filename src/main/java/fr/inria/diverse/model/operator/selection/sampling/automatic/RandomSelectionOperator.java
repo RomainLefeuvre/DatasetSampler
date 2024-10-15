@@ -1,5 +1,8 @@
 package fr.inria.diverse.model.operator.selection.sampling.automatic;
 
+import fr.inria.diverse.model.Set;
+import fr.inria.diverse.model.operator.Operator;
+
 public class RandomSelectionOperator extends AutomaticSamplingOperator {
     int seed;
 
@@ -12,5 +15,19 @@ public class RandomSelectionOperator extends AutomaticSamplingOperator {
         super(cardinality);
         this.seed = 0;
     }
+
+    @Override
+    public Operator applyStep() {
+        this.output = this.input.getRandomSubset(this.cardinality);
+        super.applyStep();
+        return this;
+    }
+
+   
+
+
+    
+
+ 
     
 }
