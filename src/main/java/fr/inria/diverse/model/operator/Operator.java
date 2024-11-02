@@ -9,6 +9,7 @@ import fr.inria.diverse.model.operator.selection.filter.FilterOperator;
 import fr.inria.diverse.model.operator.selection.sampling.automatic.RandomSelectionOperator;
 import fr.inria.diverse.model.operator.selection.sampling.automatic.SystematicRandomSelectionOperator;
 import fr.inria.diverse.model.operator.selection.sampling.manual.ManualSamplingOperator;
+import fr.inria.diverse.runtime.loader.Loader;
 
 public abstract class Operator {
     protected Set input;
@@ -22,10 +23,10 @@ public abstract class Operator {
         return this;
     }
 
-      public Operator applyStep(){
+      public Operator execute(){
 
         nextOperator.input=this.output;
-        nextOperator.applyStep();
+        nextOperator.execute();
         return this;
     }
 
@@ -38,7 +39,7 @@ public abstract class Operator {
     }
 
     public Operator executeWorkflow(Set input){
-        this.getWorkflowRootOperator().applyStep();
+        this.getWorkflowRootOperator().execute();
         return this;
     }
 
@@ -50,6 +51,12 @@ public abstract class Operator {
 
     public Operator input(Set input){
         this.input=input;
+        return this;
+    }
+
+    public Operator input(Loader loader){
+
+        this.input=loader.loadSet();
         return this;
     }
 

@@ -19,11 +19,11 @@ public  class PartitionOperator extends Operator {
     }
 
     @Override
-    public Operator applyStep() {
+    public Operator execute() {
         this.output = new Set();
 
         for(Operator selectionOperator : selectionOperators ){
-            selectionOperator.applyStep();
+            selectionOperator.execute();
             this.output.addElement(selectionOperator.output());
         }
         

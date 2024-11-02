@@ -16,7 +16,7 @@ public class FilterOperator extends SelectionOperator {
     }
 
     @Override
-    public Operator applyStep() {
+    public Operator execute() {
         throw new UnsupportedOperationException("Unimplemented method 'apply'");
     }
 

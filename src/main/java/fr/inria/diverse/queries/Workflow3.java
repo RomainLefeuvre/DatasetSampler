@@ -10,7 +10,7 @@ void main(){
         )
         .chain(randomSelectionOperator(2000))
         .input(new Set())
-        .applyStep();
+        .execute();
 
 };
     

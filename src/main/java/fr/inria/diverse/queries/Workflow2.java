@@ -5,6 +5,7 @@ import fr.inria.diverse.model.operator.OperatorFactory;
 import static fr.inria.diverse.model.operator.OperatorFactory.*;
 import static fr.inria.diverse.swh.SWHRepository.*;
 
+
 void main(){
         Operator workflow =  
         OperatorFactory.filterOperator(
@@ -12,7 +13,7 @@ void main(){
         )
         .chain(randomSelectionOperator(2000))
         .input(new Set())
-        .applyStep();
+        .execute();
 
 };
     

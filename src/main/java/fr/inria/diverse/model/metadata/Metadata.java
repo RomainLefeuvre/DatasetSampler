@@ -6,8 +6,8 @@ import fr.inria.diverse.model.constraint.BoolConstraint;
 import fr.inria.diverse.model.constraint.Constraint;
 
 public class Metadata<T> {
-    String name;
-    Class type;
+    public String name;
+    public Class type;
     
     
 

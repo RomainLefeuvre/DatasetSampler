@@ -10,7 +10,7 @@ public class SystematicRandomSelectionOperator extends AutomaticSamplingOperator
     int pas;
 
     @Override
-    public Operator applyStep() {
+    public Operator execute() {
         //Todo
         throw new UnsupportedOperationException("Unimplemented method 'apply'");
         

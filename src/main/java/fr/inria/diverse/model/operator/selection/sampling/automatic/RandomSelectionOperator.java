@@ -17,9 +17,9 @@ public class RandomSelectionOperator extends AutomaticSamplingOperator {
     }
 
     @Override
-    public Operator applyStep() {
+    public Operator execute() {
         this.output = this.input.getRandomSubset(this.cardinality);
-        super.applyStep();
+        super.execute();
         return this;
     }
 

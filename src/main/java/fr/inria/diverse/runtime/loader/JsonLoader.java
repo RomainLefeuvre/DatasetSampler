@@ -4,6 +4,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.nio.file.Path;
+import java.util.HashMap;
 import java.util.List;
 
 import com.google.gson.Gson;
@@ -13,21 +14,22 @@ import fr.inria.diverse.model.Repository;
 import fr.inria.diverse.model.Set;
 import fr.inria.diverse.model.metadata.Metadata;
 
-public class JsonLoader implements ILoader{
-    public JsonLoader(Path metadataPath, Path setPath){
-        this.metadataPath= metadataPath;
+public class JsonLoader extends Loader{
+    public JsonLoader(Path setPath,Metadata<?> ...metadatas){
+        super(metadatas);
         this.setPath = setPath;
     }
 
-    private Path metadataPath;
     private Path setPath;
     private Set set;
-    private List<Metadata> metadatas;
     private Gson gson = new Gson();
-    private Type metadataListType = new TypeToken<List<Metadata>>(){}.getType();
+    private Type metadataListType = new TypeToken<List<Metadata<Object>>>(){}.getType();
     
+
+
     @Override
     public Set loadSet() {
+        
         Type listRepos = new TypeToken<List<Repository>>(){}.getType();
 
         try (FileReader reader = new FileReader(setPath.toString())) {
@@ -41,10 +43,7 @@ public class JsonLoader implements ILoader{
     
 
 
-    @Override
-    public List<Metadata> loadMetadata() {
-        return this.metadatas;
-    }
+   
 
     
 

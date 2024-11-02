@@ -11,7 +11,7 @@ public class ManualSamplingOperator extends SamplingOperator{
     }
 
     @Override
-    public Operator applyStep() {
+    public Operator execute() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'apply'");
     }
