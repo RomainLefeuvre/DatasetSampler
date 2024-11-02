@@ -5,13 +5,13 @@ import java.util.function.Function;
 import fr.inria.diverse.model.Element;
 import fr.inria.diverse.model.metadata.Metadata;
 
-public class BoolConstraint extends Constraint {
-    public BoolConstraint(Metadata targetedMetadata) {
+public class BoolConstraint<T> extends Constraint<T> {
+    public BoolConstraint(Metadata<T> targetedMetadata) {
         super(targetedMetadata);
         //TODO Auto-generated constructor stub
     }
 
-    public BoolConstraint(Function<Object, Boolean> constraint, Metadata targetedMetadata) {
+    public BoolConstraint(Function<T, Boolean> constraint, Metadata<T> targetedMetadata) {
         super(targetedMetadata);
         this.constraint = constraint;
         //Todo add check
@@ -21,18 +21,18 @@ public class BoolConstraint extends Constraint {
 
 
     //Todo Implement properly bool algebra.
-    Function<Object, Boolean> constraint;
+    Function<T, Boolean> constraint;
 
-    private Constraint or;
+    private Constraint<Object> or;
 
-    private Constraint and;
+    private Constraint<Object> and;
 
 
     public boolean isSatisfied( Element e){
         if(or != null && and != null){
             throw new RuntimeException("Both and & or defined");
         }
-        boolean constraintResult = this.constraint.apply(e.getMetadataValue(targetedMetadata));
+        boolean constraintResult = this.constraint.apply((T) e.getMetadataValue(targetedMetadata));
         if(or != null){
             return constraintResult || or.isSatisfied(e);
         }
@@ -44,12 +44,14 @@ public class BoolConstraint extends Constraint {
 
     }
     
-    public Constraint or(Constraint c){
-        return this.or = c;
+    public <K> Constraint<K> or(Constraint<K> c){
+        this.or = (Constraint<Object>) c;
+        return c ;
     }
 
-    public Constraint and(Constraint c){
-        return this.and = c;
+    public <K> Constraint<K> and(Constraint<K> c){
+        this.and = (Constraint<Object>) c;
+        return c ;
     }
 
     

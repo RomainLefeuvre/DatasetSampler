@@ -8,10 +8,10 @@ import fr.inria.diverse.model.operator.selection.filter.FilterOperator;
 import fr.inria.diverse.model.operator.selection.sampling.automatic.RandomSelectionOperator;
 import fr.inria.diverse.model.operator.selection.sampling.automatic.SystematicRandomSelectionOperator;
 
-public  class ClusteringOperator extends Operator {
+public  class PartitionOperator extends Operator {
     SelectionOperator[] selectionOperators;
 
-    public ClusteringOperator(SelectionOperator... selectionOperators) {
+    public PartitionOperator(SelectionOperator... selectionOperators) {
         this.selectionOperators = selectionOperators;
         for (SelectionOperator selectionOperator : selectionOperators){
             selectionOperator.input(input);

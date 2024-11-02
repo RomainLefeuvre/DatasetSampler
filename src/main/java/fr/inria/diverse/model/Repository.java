@@ -4,9 +4,9 @@ import fr.inria.diverse.model.metadata.Metadata;
 
 public class Repository extends Element {
     //Metadata type use as id 
-    Metadata id;
+    Metadata<String> id;
 
-    public Repository(Metadata id) {
+    public Repository(Metadata<String> id) {
         this.id = id;
     }
     

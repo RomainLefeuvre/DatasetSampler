@@ -8,8 +8,7 @@ import static fr.inria.diverse.swh.SWHRepository.*;
 void main(){
         Operator workflow =  
         OperatorFactory.filterOperator(
-            commitNb.boolConstraint(commit_nb -> (Integer)commit_nb>100)
-            
+            commitNb.boolConstraint(commit_nb -> commit_nb>100)
         )
         .chain(randomSelectionOperator(2000))
         .input(new Set())

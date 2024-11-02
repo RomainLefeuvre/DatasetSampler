@@ -20,14 +20,9 @@ public class Metadata<T> {
         return type.isInstance(obj);
     }
 
-    public BoolConstraint boolConstraint(Function<Object, Boolean> constraint){
-        return new BoolConstraint((obj) -> {
-            if (!isOfType(obj)) {
-                throw new IllegalArgumentException("Object is not of the expected type: " + type);
-            }
-            return constraint.apply(obj);
-        }, this);    }
+    public BoolConstraint<T> boolConstraint(Function<T, Boolean> constraint){
+        return new BoolConstraint<T>(constraint, this);    }
 
-    public 
+     
     
 }

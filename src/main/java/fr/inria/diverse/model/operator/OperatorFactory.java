@@ -1,7 +1,7 @@
 package fr.inria.diverse.model.operator;
 
 import fr.inria.diverse.model.constraint.Constraint;
-import fr.inria.diverse.model.operator.clustering.ClusteringOperator;
+import fr.inria.diverse.model.operator.clustering.PartitionOperator;
 import fr.inria.diverse.model.operator.selection.SelectionOperator;
 import fr.inria.diverse.model.operator.selection.filter.FilterOperator;
 import fr.inria.diverse.model.operator.selection.sampling.automatic.RandomSelectionOperator;
@@ -14,8 +14,8 @@ public class OperatorFactory {
         return new FilterOperator(constraints);
     }
 
-    public static ClusteringOperator clusteringOperator(SelectionOperator... selectionOperators){
-        return new ClusteringOperator(selectionOperators);
+    public static PartitionOperator partitionOperator(SelectionOperator... selectionOperators){
+        return new PartitionOperator(selectionOperators);
     }
 
     public static RandomSelectionOperator randomSelectionOperator(int seed, int cardinality){

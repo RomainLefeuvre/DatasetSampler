@@ -10,17 +10,17 @@ import static fr.inria.diverse.swh.SWHRepository.*;
 void main() {
         Operator workflow =  
         OperatorFactory.filterOperator(
-            languages.boolConstraint(lang -> lang=="Java")
-            .and(latestCommitDate.boolConstraint( commit_date -> (Long) commit_date > new Date(2019, 10, 10).getTime()))
+            languages.boolConstraint(lang -> lang.contains("Java"))
+            .and(latestCommitDate.boolConstraint( commit_date -> commit_date > new Date(2019, 10, 10).getTime()))
         )
         .addMetadata(new EducationalMetadataLoader() )
         .chain(filterOperator(educationalMetadata.boolConstraint(isEducationalRepo -> (boolean)isEducationalRepo)))
         .chain(randomSelectionOperator(2000))
-        .chain(clusteringOperator(
-                 filterOperator(contributorsNb.boolConstraint( contributorsNb -> (Integer) contributorsNb==1)),
-                 filterOperator (contributorsNb.boolConstraint( contributorsNb -> (Integer) contributorsNb >=2 && (Integer) contributorsNb <=3)),
-                 filterOperator (contributorsNb.boolConstraint( contributorsNb -> (Integer) contributorsNb >=4 && (Integer) contributorsNb <=10)),
-                 filterOperator(contributorsNb.boolConstraint( contributorsNb -> (Integer) contributorsNb >10)
+        .chain(partitionOperator(
+                 filterOperator(contributorsNb.boolConstraint( contributorsNb -> contributorsNb==1)),
+                 filterOperator (contributorsNb.boolConstraint( contributorsNb -> contributorsNb >=2 && contributorsNb <=3)),
+                 filterOperator (contributorsNb.boolConstraint( contributorsNb -> contributorsNb >=4 && contributorsNb <=10)),
+                 filterOperator(contributorsNb.boolConstraint( contributorsNb -> contributorsNb >10)
                 ))     
         )  
         ;

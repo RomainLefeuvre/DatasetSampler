@@ -3,7 +3,7 @@ package fr.inria.diverse.model.operator;
 import fr.inria.diverse.model.Set;
 import fr.inria.diverse.model.constraint.Constraint;
 import fr.inria.diverse.model.metadata.IMetadataLoader;
-import fr.inria.diverse.model.operator.clustering.ClusteringOperator;
+import fr.inria.diverse.model.operator.clustering.PartitionOperator;
 import fr.inria.diverse.model.operator.selection.SelectionOperator;
 import fr.inria.diverse.model.operator.selection.filter.FilterOperator;
 import fr.inria.diverse.model.operator.selection.sampling.automatic.RandomSelectionOperator;
