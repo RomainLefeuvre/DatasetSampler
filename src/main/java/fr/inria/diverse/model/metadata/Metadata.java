@@ -2,9 +2,10 @@ package fr.inria.diverse.model.metadata;
 
 import java.util.function.Function;
 
-import fr.inria.diverse.model.Constraint;
+import fr.inria.diverse.model.constraint.BoolConstraint;
+import fr.inria.diverse.model.constraint.Constraint;
 
-public class Metadata {
+public class Metadata<T> {
     String name;
     Class type;
     
@@ -19,12 +20,14 @@ public class Metadata {
         return type.isInstance(obj);
     }
 
-    public Constraint constraint(Function<Object, Boolean> constraint){
-        return new Constraint((obj) -> {
+    public BoolConstraint boolConstraint(Function<Object, Boolean> constraint){
+        return new BoolConstraint((obj) -> {
             if (!isOfType(obj)) {
                 throw new IllegalArgumentException("Object is not of the expected type: " + type);
             }
             return constraint.apply(obj);
         }, this);    }
+
+    public 
     
 }

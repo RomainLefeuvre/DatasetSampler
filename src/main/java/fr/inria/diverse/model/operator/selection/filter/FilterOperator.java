@@ -1,7 +1,7 @@
 package fr.inria.diverse.model.operator.selection.filter;
 
-import fr.inria.diverse.model.Constraint;
 import fr.inria.diverse.model.Set;
+import fr.inria.diverse.model.constraint.Constraint;
 import fr.inria.diverse.model.operator.Operator;
 import fr.inria.diverse.model.operator.selection.SelectionOperator;
 

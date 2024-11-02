@@ -6,7 +6,7 @@ import fr.inria.diverse.model.Repository;
 import fr.inria.diverse.model.metadata.Metadata;
 
 public class SWHRepository extends Repository {
-
+    public static Metadata id = new Metadata("id",String.class);
     public static Metadata swhid = new Metadata("swhid",String.class);
     public static Metadata languages = new Metadata("languages",List.class);
     public static Metadata contributorsNb = new Metadata("contributorsNb",String.class);
@@ -18,6 +18,6 @@ public class SWHRepository extends Repository {
         //TODO Auto-generated constructor stub
     }
     public SWHRepository(){
-        super(swhid);
+        super(id);
     }
 }

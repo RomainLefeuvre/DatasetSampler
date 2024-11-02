@@ -1,15 +1,12 @@
 import fr.inria.diverse.model.Set;
 import fr.inria.diverse.model.operator.Operator;
-import fr.inria.diverse.model.operator.OperatorFactory;
 
 import static fr.inria.diverse.model.operator.OperatorFactory.*;
-import static fr.inria.diverse.swh.SWHRepository.*;
+import static fr.inria.diverse.runtime.Store.*;
 
 void main(){
-        Operator workflow =  
-        OperatorFactory.filterOperator(
-            commitNb.boolConstraint(commit_nb -> (Integer)commit_nb>100)
-            
+        filterOperator(
+            boolConstraint(commit_nb -> (Integer)commit_nb>100,"commitNb")
         )
         .chain(randomSelectionOperator(2000))
         .input(new Set())

@@ -8,7 +8,7 @@ import fr.inria.diverse.model.metadata.MetadataValue;
 public abstract class Element {
     protected HashMap<Metadata,MetadataValue> metadata;
 
-    MetadataValue getMetadataValue(Metadata m){
+    public MetadataValue getMetadataValue(Metadata m){
         if (!metadata.containsKey(m)){
             throw new RuntimeException("Missing metadata "+m);
         }

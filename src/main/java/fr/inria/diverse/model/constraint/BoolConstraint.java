@@ -1,11 +1,26 @@
-package fr.inria.diverse.model;
+package fr.inria.diverse.model.constraint;
 
 import java.util.function.Function;
 
+import fr.inria.diverse.model.Element;
 import fr.inria.diverse.model.metadata.Metadata;
 
-public class Constraint {
+public class BoolConstraint extends Constraint {
+    public BoolConstraint(Metadata targetedMetadata) {
+        super(targetedMetadata);
+        //TODO Auto-generated constructor stub
+    }
 
+    public BoolConstraint(Function<Object, Boolean> constraint, Metadata targetedMetadata) {
+        super(targetedMetadata);
+        this.constraint = constraint;
+        //Todo add check
+        this.targetedMetadata = targetedMetadata;
+    }
+
+
+
+    //Todo Implement properly bool algebra.
     Function<Object, Boolean> constraint;
 
     private Constraint or;
@@ -39,13 +54,8 @@ public class Constraint {
 
     
 
-    public Metadata targetedMetadata;
 
-    public Constraint(Function<Object, Boolean> constraint, Metadata targetedMetadata) {
-        this.constraint = constraint;
-        //Todo add check
-        this.targetedMetadata = targetedMetadata;
-    }
+    
 
     
 
