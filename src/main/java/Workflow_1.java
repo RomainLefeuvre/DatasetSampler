@@ -40,14 +40,14 @@ void main(){
                     parameterizedOperators(year-> //filter out repo without a commit in the year
                                                   filterOperator(commitNbPerYear                             
                                                                     .boolConstraint(x -> x.get(year)>0))
-                                                  ////Random sampling of 20k repo      
+                                                  //Random sampling of 20k repo      
                                                   .chain(randomSelectionOperator(20000))          
                                                   //Compute loc metadata
                                                   .addMetadata(new LocMetadataLoader())                       
                                                   //Filter out repo having 0 loc
                                                   .chain(filterOperator(loc.boolConstraint(x -> x > 0))),     
                                                   //Value that will be used to parition with above operator
-                                        2012,2013,2014,2015,2016,2017,2018,2019,2020)))           //Define all the years used for the partition 
+                                        2012,2013,2014,2015,2016,2017,2018,2019,2020)))           
     .input(jsonLoader("input.json",url))
     .execute();
 };

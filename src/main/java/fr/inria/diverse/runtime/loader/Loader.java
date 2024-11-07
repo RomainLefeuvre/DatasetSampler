@@ -9,7 +9,7 @@ import fr.inria.diverse.model.metadata.Metadata;;
 public abstract class Loader {
    protected HashMap<String,Metadata<?>> metadatas = new HashMap<>();
 
-   Loader(Metadata<?> ...metadatas){
+   public Loader(Metadata<?> ...metadatas){
       for(Metadata<?> metadata : metadatas){
          this.metadatas.put(metadata.name, metadata);
      }

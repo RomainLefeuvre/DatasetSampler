@@ -5,11 +5,11 @@ import fr.inria.diverse.model.operator.Operator;
 import fr.inria.diverse.model.operator.selection.SelectionOperator;
 
 public class FilterOperator extends SelectionOperator {
-    Constraint<?>[] constraints;
+    Constraint<?> constraint;
    
 
-    public FilterOperator(Constraint<?>... constraints) {
-        this.constraints = constraints;
+    public FilterOperator(Constraint constraint) {
+        this.constraint = constraint;
     }
 
     @Override

@@ -53,7 +53,8 @@ public class JsonLoader extends Loader{
 
 
     private Repository createRepositoryFromMap(Map<String, Object> jsonObject){
-        Repository repo = new Repository(this.metadatas.get("id")); 
+        //todo fix it
+        Repository repo = new Repository((Metadata<String>) this.metadatas.get("id")); 
         List<MetadataValue<?>> metadataValues = new ArrayList<MetadataValue<?>>();
         for(Metadata<?> metadata : metadatas.values()){
             metadataValues.add(metadata.createMetadataValue(metadata.type.cast(jsonObject.get(metadata.name))));

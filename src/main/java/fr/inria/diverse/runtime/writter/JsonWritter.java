@@ -30,7 +30,7 @@ public class JsonWritter extends Writter {
         List<?> result = new ArrayList<>();
 
             if(element instanceof Element){
-                result.add(element.metadataValuesForSerialization());
+                //todo
             }
        }
     }
@@ -48,14 +48,14 @@ public class JsonWritter extends Writter {
                 Set set = new Set();
             }
 
-
+/*
             JsonObject jsonObject = new JsonObject();
             jsonObject.addProperty("groupName", group.getGroupName());
     
             // Create a JSON array to hold the users
             JsonElement usersArray = context.serialize(group.getUsers());
             jsonObject.add("users", usersArray);
-    
+    */
             return jsonObject;
         }
 

@@ -23,9 +23,9 @@ public class BoolConstraint<T> extends Constraint<T> {
     //Todo Implement properly bool algebra.
     Function<T, Boolean> constraint;
 
-    private Constraint<Object> or;
+    private Constraint<?> or;
 
-    private Constraint<Object> and;
+    private Constraint<?> and;
 
 
     public boolean isSatisfied( Element e){
@@ -44,13 +44,13 @@ public class BoolConstraint<T> extends Constraint<T> {
 
     }
     
-    public <K> Constraint<K> or(Constraint<K> c){
-        this.or = (Constraint<Object>) c;
-        return c ;
+    public <K> BoolConstraint<K> or(BoolConstraint<K> c){
+        this.or =  c;
+        return  c ;
     }
 
-    public <K> Constraint<K> and(Constraint<K> c){
-        this.and = (Constraint<Object>) c;
+    public <K> BoolConstraint<K> and(BoolConstraint<K> c){
+        this.and = c;
         return c ;
     }
 

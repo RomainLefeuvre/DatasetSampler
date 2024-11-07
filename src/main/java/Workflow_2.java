@@ -21,16 +21,20 @@ void main(){
     Metadata<String> language = new Metadata<>("language", String.class);
 
     //Workflow Declaration and Execution
-    partitionOperator(                                       //Filter by language 
-                      parameterizedOperators( currentLang -> filterOperator(language.boolConstraint(x-> x.equals(currentLang)))
-                                                                             //Chain a systematic operator, to sort by stars and 
-                                                                             //select the most starred repo by subset
-                                                                            .chain(systematicSelectionOperator(1,1,
-                                                                            (stars.boolComparator((stars1,stars2)->stars1<stars2?stars1:stars2)))
-),                                                        //Value that will be used to parition with above operator              
-                                                "Ruby","JavaScript","PHP","C++","C","Go",
-                                                          "Java","Python","C#","Lua","Swift",
-                                                          "Scala","R","Rust","Lisp","SQL","Fortran" ))
+    partitionOperator(              
+             parameterizedOperators(
+                                    //Operator that will be applied for each subset of the partition
+                                    lang->filterOperator(language
+                                                        .boolConstraint(x-> x.equals(lang)))
+                                           //Chain a systematic operator, sort by stars  
+                                           //and select the most starred repo by subset
+                                          .chain(systematicSelectionOperator(1,1,
+                                           stars.boolComparator(
+                                                        (stars1,stars2)->stars1<stars2?stars1:stars2))),
+                                  //Value that will be used for partionning              
+                          "Ruby","JavaScript","PHP","C++","C","Go",
+                                    "Java","Python","C#","Lua","Swift",
+                                    "Scala","R","Rust","Lisp","SQL","Fortran" ))
     .input(jsonLoader("input.json",url))
     .execute();;
 }
