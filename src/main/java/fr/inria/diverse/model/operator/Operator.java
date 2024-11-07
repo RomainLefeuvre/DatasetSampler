@@ -16,7 +16,7 @@ public abstract class Operator {
     protected Set output;
     protected Operator nextOperator;
     protected Operator previousOperator;
-
+    
 
     public Operator addMetadata(IMetadataLoader loader){
         loader.loadMetadata(output);
@@ -24,9 +24,10 @@ public abstract class Operator {
     }
 
       public Operator execute(){
-
-        nextOperator.input=this.output;
-        nextOperator.execute();
+        if(nextOperator != null){
+            nextOperator.input=this.output;
+            nextOperator.execute();
+        }
         return this;
     }
 

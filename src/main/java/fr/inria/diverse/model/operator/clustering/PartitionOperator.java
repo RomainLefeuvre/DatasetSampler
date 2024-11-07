@@ -9,20 +9,23 @@ import fr.inria.diverse.model.operator.selection.sampling.automatic.RandomSelect
 import fr.inria.diverse.model.operator.selection.sampling.automatic.SystematicRandomSelectionOperator;
 
 public  class PartitionOperator extends Operator {
-    SelectionOperator[] selectionOperators;
+    Operator[] operators;
 
-    public PartitionOperator(SelectionOperator... selectionOperators) {
-        this.selectionOperators = selectionOperators;
-        for (SelectionOperator selectionOperator : selectionOperators){
-            selectionOperator.input(input);
+    public PartitionOperator(Operator... operators) {
+        this.operators = operators;
+        for (Operator Operator : operators){
+            Operator.input(input);
         }
     }
+
+    
+
 
     @Override
     public Operator execute() {
         this.output = new Set();
 
-        for(Operator selectionOperator : selectionOperators ){
+        for(Operator selectionOperator : operators ){
             selectionOperator.execute();
             this.output.addElement(selectionOperator.output());
         }

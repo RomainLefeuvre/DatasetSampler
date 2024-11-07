@@ -1,6 +1,7 @@
 package fr.inria.diverse.model;
 
 import fr.inria.diverse.model.metadata.Metadata;
+import fr.inria.diverse.model.metadata.MetadataValue;
 
 public class Repository extends Element {
     //Metadata type use as id 
@@ -8,6 +9,10 @@ public class Repository extends Element {
 
     public Repository(Metadata<String> id) {
         this.id = id;
+    }
+
+    public String getId(){
+        return this.getMetadataValue(id).getValue();
     }
     
 }

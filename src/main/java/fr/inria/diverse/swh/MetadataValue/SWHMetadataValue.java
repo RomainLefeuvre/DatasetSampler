@@ -11,7 +11,7 @@ public class SWHMetadataValue<T> extends MetadataValue<T>{
     Long internalId;
 
     @Override
-    public Object getValue() {
+    public T getValue() {
         throw(new RuntimeException("unimplemented"));
     }
 }

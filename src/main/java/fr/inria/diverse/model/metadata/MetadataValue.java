@@ -2,13 +2,17 @@ package fr.inria.diverse.model.metadata;
 
 public class MetadataValue<T> {
     Metadata<T> metadata;
-    private Object value;
+    private T value;
     //ToDo add safe type management and checks
 
     
 
-    public  Object getValue(){
+    public  T getValue(){
         return value;
+    }
+
+    public Metadata<T> getMetadata(){
+        return metadata;
     }
 
     public MetadataValue(Metadata<T> metadata, T value) {
