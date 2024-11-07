@@ -19,11 +19,11 @@ that subset
 void main(){
 //Declaration of Metadata
 
-    Metadata<String> url = new Metadata<>("id",String.class);
-    Metadata<Integer> authorNb = new Metadata<>("authorNb", Integer.class);
-    Metadata<Boolean> containsPythonFileModifiedByMultipleAuthors = 
-                              new Metadata<>("containsPythonFileMultiAuthors",Boolean.class);
-    Metadata<Boolean> availableOnGithub = new Metadata<>("availableOnGithub",Boolean.class);
+    var url = new Metadata<String>("id",String.class);
+    var authorNb = new Metadata<Integer>("authorNb", Integer.class);
+    var containsPythonFileModifiedByMultipleAuthors = 
+                              new Metadata<Boolean>("containsPythonFileMultiAuthors",Boolean.class);
+    var availableOnGithub = new Metadata<Boolean>("availableOnGithub",Boolean.class);
  
     filterOperator(authorNb.boolConstraint(x->x>1)
                    .and(availableOnGithub.boolConstraint(x->x)))
