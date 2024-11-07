@@ -51,8 +51,8 @@ public  class PartitionOperator extends Operator {
       
     }
 
-    public static SelectionOperator filterOperator(Constraint... constraints){
-        return new FilterOperator(constraints);
+    public static SelectionOperator filterOperator(Constraint constraint){
+        return new FilterOperator(constraint);
       
     }
     }

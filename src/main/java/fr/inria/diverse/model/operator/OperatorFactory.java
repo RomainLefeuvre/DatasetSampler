@@ -16,8 +16,8 @@ import fr.inria.diverse.model.operator.selection.sampling.manual.ManualSamplingO
 
 public class OperatorFactory {
 
-    public static FilterOperator filterOperator(Constraint<?>... constraints){
-        return new FilterOperator(constraints);
+    public static FilterOperator filterOperator(Constraint constraint){
+        return new FilterOperator(constraint);
     }
 
     public static PartitionOperator partitionOperator(Operator... operators){

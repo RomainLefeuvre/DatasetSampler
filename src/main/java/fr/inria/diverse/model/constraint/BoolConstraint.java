@@ -6,6 +6,10 @@ import fr.inria.diverse.model.Element;
 import fr.inria.diverse.model.metadata.Metadata;
 
 public class BoolConstraint<T> extends Constraint<T> {
+    public static <T extends Comparable<T>>  Function<T, Boolean> greaterThan(T x) {
+        return n -> n.compareTo(x) >0;
+    }
+   
     public BoolConstraint(Metadata<T> targetedMetadata) {
         super(targetedMetadata);
         //TODO Auto-generated constructor stub
