@@ -1,7 +1,7 @@
 package fr.inria.diverse.model.operator.clustering;
 
-import fr.inria.diverse.model.Set;
 import fr.inria.diverse.model.constraint.Constraint;
+import fr.inria.diverse.model.element.Set;
 import fr.inria.diverse.model.operator.Operator;
 import fr.inria.diverse.model.operator.selection.SelectionOperator;
 import fr.inria.diverse.model.operator.selection.filter.FilterOperator;

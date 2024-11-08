@@ -40,8 +40,8 @@ public class OperatorFactory {
         return new SystematicRandomSelectionOperator(cardinality,pas);
     }
 
-    public static ManualSamplingOperator manualSamplingOperator(int cardinality){
-        return new ManualSamplingOperator(cardinality);
+    public static <T> ManualSamplingOperator<T> manualSamplingOperator(T... id){
+        return new ManualSamplingOperator<T>(id);
     }
 
     public static <T> Operator[] parameterizedOperators( Function<T,Operator> operator, T... values  ){

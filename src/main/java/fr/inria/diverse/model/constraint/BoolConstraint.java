@@ -2,7 +2,7 @@ package fr.inria.diverse.model.constraint;
 
 import java.util.function.Function;
 
-import fr.inria.diverse.model.Element;
+import fr.inria.diverse.model.element.Element;
 import fr.inria.diverse.model.metadata.Metadata;
 
 public class BoolConstraint<T> extends Constraint<T> {

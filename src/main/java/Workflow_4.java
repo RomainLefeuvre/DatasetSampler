@@ -1,6 +1,8 @@
 import fr.inria.diverse.model.metadata.Metadata;
+
+import static fr.inria.diverse.model.element.loader.LoaderFactory.*;
+import static fr.inria.diverse.model.element.writter.WritterFactory.*;
 import static fr.inria.diverse.model.operator.OperatorFactory.*;
-import static fr.inria.diverse.runtime.loader.LoaderFactory.*;
 
 // An Empirical Study to Investigate Collaboration
 //Among Developers in Open Source Software (OSS)
@@ -19,19 +21,17 @@ that subset
 void main(){
 //Declaration of Metadata
 
-    var url = new Metadata<String>("id",String.class);
-    var authorNb = new Metadata<Integer>("authorNb", Integer.class);
-    var containsPythonFileModifiedByMultipleAuthors = 
-                              new Metadata<Boolean>("containsPythonFileMultiAuthors",Boolean.class);
-    var availableOnGithub = new Metadata<Boolean>("availableOnGithub",Boolean.class);
+    var url = Metadata.ofString("id");
+    var authorNb =Metadata.ofInteger("authorNb");
+    var containsMultiAuthorsPyFiles = Metadata.ofBoolean("containsMultiAuthorsPyFiles");
+    var availableOnGithub = Metadata.ofBoolean("availableOnGithub");
  
     filterOperator(authorNb.boolConstraint(x->x>1)
-                   .and(availableOnGithub.boolConstraint(x->x)))
+              .and(availableOnGithub.boolConstraint(x->x)))
     .chain(randomSelectionOperator(20000))
-    .chain(filterOperator(containsPythonFileModifiedByMultipleAuthors.boolConstraint(x->x)))  
-    .input(jsonLoader("input.json",url))
+    .chain(filterOperator(containsMultiAuthorsPyFiles.boolConstraint(x->x)))  
+    .input(jsonLoader("input.json",url,authorNb,containsMultiAuthorsPyFiles,availableOnGithub))
     .execute();
-
 }
     
 

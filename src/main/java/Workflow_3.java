@@ -1,6 +1,8 @@
 import fr.inria.diverse.model.metadata.Metadata;
+
+import static fr.inria.diverse.model.element.loader.LoaderFactory.*;
+import static fr.inria.diverse.model.element.writter.WritterFactory.*;
 import static fr.inria.diverse.model.operator.OperatorFactory.*;
-import static fr.inria.diverse.runtime.loader.LoaderFactory.*;
 
 // CodeLL: A Lifelong Learning Dataset to Support the Co-Evolution
 // of Data and Language Models of Code
@@ -26,21 +28,20 @@ import static fr.inria.diverse.runtime.loader.LoaderFactory.*;
  */
 
 void main(){
-//Declaration of Metadata
-    Metadata<String> url = new Metadata<>("id",String.class);
-    Metadata<Boolean> containsPythonFile = new Metadata<>("containsPythonFile",Boolean.class);
-    Metadata<String> label = new Metadata<>("label", String.class);
-    Metadata<Boolean> useThirdPartyMLLibrary = new Metadata<>("mlLib", Boolean.class);
-    Metadata<Integer> releaseNb = new Metadata<>("releaseNb", Integer.class);
-
+    var url = Metadata.ofString("id");
+    var containsPythonFile = Metadata.ofBoolean("containsPythonFile");
+    var label = Metadata.ofString("label");
+    var useThirdPartyMLLibrary = Metadata.ofBoolean("mlLib");
+    var releaseNb = Metadata.ofInteger("releaseNb");
 
     filterOperator(containsPythonFile.boolConstraint(x->x)
-                   .and(label.boolConstraint(x -> x.equals("machine learning")||
+              .and(label.boolConstraint(x -> x.equals("machine learning")||
                                                   x.equals("neural network"))
-                        .or(useThirdPartyMLLibrary.boolConstraint(x->x)))
-                   .and(releaseNb.boolConstraint(x -> x>2))
-                  )              
-    .input(jsonLoader("input.json",url))
+                  .or(useThirdPartyMLLibrary.boolConstraint(x->x))
+                  )
+              .and(releaseNb.boolConstraint(x -> x>2)))              
+    .input(jsonLoader("input.json",url,containsPythonFile,label,
+    useThirdPartyMLLibrary,releaseNb))
     .execute();
 }
     

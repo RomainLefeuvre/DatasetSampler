@@ -1,11 +1,11 @@
 import java.sql.Date;
-import fr.inria.diverse.model.Element;
+
+import fr.inria.diverse.model.element.Element;
 import fr.inria.diverse.model.metadata.IMetadataLoader;
 import fr.inria.diverse.model.operator.Operator;
 import fr.inria.diverse.model.operator.OperatorFactory;
 //Static import for operator factory
 import static fr.inria.diverse.model.operator.OperatorFactory.*;
-import static fr.inria.diverse.queries.Metadata.ExternalMetadata.*;
 import static fr.inria.diverse.swh.SWHRepository.*;
 void main() {
         Operator workflow =  
@@ -14,7 +14,7 @@ void main() {
             .and(latestCommitDate.boolConstraint( commitDate -> commitDate > new Date(2019, 10, 10).getTime()))
         )
         .addMetadata(new EducationalMetadataLoader() )
-        .chain(filterOperator(educationalMetadata.boolConstraint(isEducationalRepo -> (boolean)isEducationalRepo)))
+        //.chain(filterOperator(educationalMetadata.boolConstraint(isEducationalRepo -> (boolean)isEducationalRepo)))
         .chain(randomSelectionOperator(2000))
         .chain(partitionOperator(
                  filterOperator(contributorsNb.boolConstraint( contributorsNb -> contributorsNb==1)),

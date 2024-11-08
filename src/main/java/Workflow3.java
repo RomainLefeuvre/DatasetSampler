@@ -1,4 +1,4 @@
-import fr.inria.diverse.model.Set;
+import fr.inria.diverse.model.element.Set;
 import fr.inria.diverse.model.operator.Operator;
 
 import static fr.inria.diverse.model.operator.OperatorFactory.*;

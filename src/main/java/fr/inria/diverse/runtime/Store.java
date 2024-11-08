@@ -3,9 +3,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
-import fr.inria.diverse.model.Set;
 import fr.inria.diverse.model.constraint.BoolConstraint;
 import fr.inria.diverse.model.constraint.Constraint;
+import fr.inria.diverse.model.element.Set;
 import fr.inria.diverse.model.metadata.*;
 public class Store {
     private static Store INSTANCE;

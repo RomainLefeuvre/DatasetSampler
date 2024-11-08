@@ -2,7 +2,7 @@ package fr.inria.diverse.swh;
 
 import java.util.List;
 
-import fr.inria.diverse.model.Repository;
+import fr.inria.diverse.model.element.Repository;
 import fr.inria.diverse.model.metadata.Metadata;
 
 public class SWHRepository extends Repository {

@@ -1,6 +1,8 @@
 import fr.inria.diverse.model.metadata.Metadata;
+
+import static fr.inria.diverse.model.element.loader.LoaderFactory.*;
+import static fr.inria.diverse.model.element.writter.WritterFactory.*;
 import static fr.inria.diverse.model.operator.OperatorFactory.*;
-import static fr.inria.diverse.runtime.loader.LoaderFactory.*;
 
 //Keep the Ball Rolling: Analyzing Release Cadence in GitHub Projects
 //  doi: 10.1109/MSR59073.2023.00058
@@ -18,30 +20,30 @@ last commit in 2021
  */
 
 void main(){
-//Declaration of Metadata
-
-    Metadata<String> url = new Metadata<>("id",String.class);
-    Metadata<Integer> authorNb = new Metadata<>("authorNb", Integer.class);
-    Metadata<String> primaryLanguage = new Metadata<>("primaryLanguage", String.class);
-    Metadata<Integer> stars = new Metadata<>("stars", Integer.class);
-    Metadata<Integer> commitNb = new Metadata<>("commitNb",Integer.class);
-    Metadata<Integer> nbFileInPrimaryLanguage = new Metadata<>("commitNb",Integer.class);
-    Metadata<Boolean> availableOnGithub = new Metadata<>("availableOnGithub",Boolean.class);
-    Metadata<Long> dateOfFirstCommit = new Metadata<>("dateOfFirstCommit",Long.class);
-    Metadata<Long> dateOfLastCommit = new Metadata<>("dateOfLastCommit",Long.class);
+    var url = Metadata.ofString("id");
+    var primaryLanguage = Metadata.ofString("primaryLanguage");
+    var authorNb = Metadata.ofInteger("authorNb");
+    var stars = Metadata.ofInteger("stars");
+    var commitNb = Metadata.ofInteger("commitNb");
+    var nbFileInPrimaryLanguage = Metadata.ofInteger("commitNb");
+    var availableOnGithub = Metadata.ofBoolean("availableOnGithub");
+    var dateOfFirstCommit = Metadata.ofLong("dateOfFirstCommit");
+    var dateOfLastCommit = Metadata.ofLong("dateOfLastCommit");
 
 
-    filterOperator(primaryLanguage.boolConstraint(Set.of("java", "python", "ruby", "Go")::contains)
-                   .and(commitNb.boolConstraint(x->x>150))
-                   .and(availableOnGithub.boolConstraint(x->x))
-                   .and(stars.boolConstraint(x->x>20))
-                   .and(authorNb.boolConstraint(x->x>10)
-                   .and(nbFileInPrimaryLanguage.boolConstraint(x->x>10))
-                   .and(dateOfFirstCommit.boolConstraint(x->x<new Date(2019, 01, 01).getTime()))
-                   .and(dateOfLastCommit.boolConstraint(x->(new Date(x)).getYear()==2021))
-                   )
-    )
-    .input(jsonLoader("input.json",url))
+    filterOperator(primaryLanguage.boolConstraint(
+                                  Set.of("java", "python", "ruby", "Go")::contains)
+              .and(commitNb.boolConstraint(x->x>150))
+              .and(availableOnGithub.boolConstraint(x->x))
+              .and(stars.boolConstraint(x->x>20))
+              .and(authorNb.boolConstraint(x->x>10)
+              .and(nbFileInPrimaryLanguage.boolConstraint(x->x>10))
+              .and(dateOfFirstCommit.boolConstraint(
+                                          x->x<new Date(2019, 01, 01).getTime()))
+              .and(dateOfLastCommit.boolConstraint(
+                                          x->(new Date(x)).getYear()==2021))))       
+    .input(jsonLoader("input.json",url,primaryLanguage,authorNb,stars,commitNb,nbFileInPrimaryLanguage,
+                     availableOnGithub,dateOfFirstCommit,dateOfLastCommit))
     .execute();
 
 }

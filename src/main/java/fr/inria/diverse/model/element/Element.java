@@ -1,4 +1,4 @@
-package fr.inria.diverse.model;
+package fr.inria.diverse.model.element;
 
 import java.util.HashMap;
 import java.util.List;

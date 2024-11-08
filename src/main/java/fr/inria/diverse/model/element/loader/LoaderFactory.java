@@ -1,4 +1,4 @@
-package fr.inria.diverse.runtime.loader;
+package fr.inria.diverse.model.element.loader;
 
 import java.nio.file.Paths;
 

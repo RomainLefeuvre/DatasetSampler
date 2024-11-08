@@ -1,4 +1,4 @@
-package fr.inria.diverse.model;
+package fr.inria.diverse.model.element;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Random;

@@ -1,9 +1,12 @@
-import fr.inria.diverse.model.Element;
-import fr.inria.diverse.model.Repository;
+import fr.inria.diverse.model.element.Element;
+import fr.inria.diverse.model.element.Repository;
 import fr.inria.diverse.model.metadata.IMetadataLoader;
 import fr.inria.diverse.model.metadata.Metadata;
+
+import static fr.inria.diverse.model.element.loader.LoaderFactory.*;
+import static fr.inria.diverse.model.element.writter.WritterFactory.*;
 import static fr.inria.diverse.model.operator.OperatorFactory.*;
-import static fr.inria.diverse.runtime.loader.LoaderFactory.*;
+
 import java.util.Map;
 // Evolution of the Practice of Software Testing in Java Projects
 // DOI : 10.1109/MSR59073.2023.00057
@@ -26,28 +29,30 @@ import java.util.Map;
 void main(){
 //Evolution of the Practice of Software Testing in Java Projects
     //Declaration of Metadata
-    Metadata<String> url = new Metadata<>("id",String.class);
-    Metadata<String> language = new Metadata<>("language",String.class);
-    Metadata<Map<Integer,Long>> commitNbPerYear = new Metadata<>("commitNbPerYear",Map.class);
-    Metadata<Integer> loc = new Metadata<>("loc", Integer.class);
+    var url = Metadata.ofString("id");
+    var language = Metadata.ofString("language");
+    Metadata<Map<Integer,Long>> commitNbPerYear = 
+                new Metadata<>("commitNbPerYear",Map.class);
+    var loc = Metadata.ofInteger("loc");
   
     //Workflow Declaration and Execution
     //Filter out non java project
-    filterOperator(language.boolConstraint(x -> x.equals("JAVA")))
+    filterOperator(language.boolConstraint(
+                            x -> x.equals("JAVA")))
     .chain(partitionOperator(                      
-                    //Parameterized Operator used to create each subset of partion,
-                    //here with different "years" values 
-                    parameterizedOperators(year-> //filter out repo without a commit in the year
-                                                  filterOperator(commitNbPerYear                             
-                                                                    .boolConstraint(x -> x.get(year)>0))
+            //Parameterized Operator used to create each subset of partion,
+            //here with different "years" values 
+            parameterizedOperators(year-> //filter out repo without a commit in the year
+                                   filterOperator(commitNbPerYear                             
+                                                  .boolConstraint(x -> x.get(year)>0))
                                                   //Random sampling of 20k repo      
                                                   .chain(randomSelectionOperator(20000))          
                                                   //Compute loc metadata
                                                   .addMetadata(new LocMetadataLoader())                       
                                                   //Filter out repo having 0 loc
                                                   .chain(filterOperator(loc.boolConstraint(x -> x > 0))),     
-                                                  //Value that will be used to parition with above operator
-                                        2012,2013,2014,2015,2016,2017,2018,2019,2020)))           
+                                  //Value that will be used to parition with above operator
+                        2012,2013,2014,2015,2016,2017,2018,2019,2020)))           
     .input(jsonLoader("input.json",url))
     .execute();
 };
@@ -59,6 +64,7 @@ class LocMetadataLoader  implements IMetadataLoader{
             //Call exteranal scripts computing LOC metadata
         }
     }
+   
 }
     
 

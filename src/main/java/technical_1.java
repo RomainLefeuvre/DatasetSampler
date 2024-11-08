@@ -1,6 +1,8 @@
 import fr.inria.diverse.model.metadata.Metadata;
+
+import static fr.inria.diverse.model.element.loader.LoaderFactory.*;
+import static fr.inria.diverse.model.element.writter.WritterFactory.*;
 import static fr.inria.diverse.model.operator.OperatorFactory.*;
-import static fr.inria.diverse.runtime.loader.LoaderFactory.*;
 
 import java.util.Date;
 import java.util.Set;

@@ -1,4 +1,4 @@
-package fr.inria.diverse.model;
+package fr.inria.diverse.model.element;
 
 import fr.inria.diverse.model.metadata.Metadata;
 import fr.inria.diverse.model.metadata.MetadataValue;

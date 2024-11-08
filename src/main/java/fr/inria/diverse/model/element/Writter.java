@@ -1,6 +1,4 @@
-package fr.inria.diverse.runtime.writter;
-
-import fr.inria.diverse.model.Set;
+package fr.inria.diverse.model.element;
 
 public abstract class Writter {
     public abstract void writeSet(Set set);

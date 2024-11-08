@@ -1,8 +1,7 @@
-package fr.inria.diverse.runtime.loader;
+package fr.inria.diverse.model.element;
 
 import java.util.HashMap;
 
-import fr.inria.diverse.model.Set;
 import fr.inria.diverse.model.metadata.Metadata;;
 
 

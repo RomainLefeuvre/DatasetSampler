@@ -1,4 +1,4 @@
-package fr.inria.diverse.runtime.loader;
+package fr.inria.diverse.model.element.loader;
 
 import static fr.inria.diverse.swh.SWHRepository.id;
 
@@ -14,8 +14,9 @@ import java.util.Map;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import fr.inria.diverse.model.Repository;
-import fr.inria.diverse.model.Set;
+import fr.inria.diverse.model.element.Loader;
+import fr.inria.diverse.model.element.Repository;
+import fr.inria.diverse.model.element.Set;
 import fr.inria.diverse.model.metadata.Metadata;
 import fr.inria.diverse.model.metadata.MetadataValue;
 

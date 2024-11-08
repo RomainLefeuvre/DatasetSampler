@@ -1,6 +1,6 @@
 package fr.inria.diverse.model.operator.selection.sampling.automatic;
 
-import fr.inria.diverse.model.Set;
+import fr.inria.diverse.model.element.Set;
 import fr.inria.diverse.model.operator.Operator;
 
 public class RandomSelectionOperator extends AutomaticSamplingOperator {

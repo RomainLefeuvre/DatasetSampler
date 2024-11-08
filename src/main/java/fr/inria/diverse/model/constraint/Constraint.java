@@ -1,6 +1,6 @@
 package fr.inria.diverse.model.constraint;
 
-import fr.inria.diverse.model.Element;
+import fr.inria.diverse.model.element.Element;
 import fr.inria.diverse.model.metadata.Metadata;
 
 public abstract  class  Constraint<T> {
